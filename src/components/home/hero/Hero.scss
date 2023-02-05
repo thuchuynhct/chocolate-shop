@@ -1,0 +1,40 @@
+@use "../../../sass/index" as *;
+
+.hero {
+    position: relative;
+    @include flex(center, center, $direction: column);
+    height: 100vh;
+    padding: 20px 5%;
+    color: $clr-white;
+    text-align: center;
+
+    .sub-title {
+        text-transform: uppercase;
+        font-size: $text-lg;
+        opacity: 0.8;
+    }
+
+    .main-title {
+        max-width: 630px;
+        margin: auto-clamp(70) auto 0;
+        font-weight: 500;
+    }
+
+    .small {
+        display: inline;
+        font-size: auto-clamp(40);
+        vertical-align: middle;
+    }
+
+    .btn-shop {
+        margin-top: auto-clamp(100);
+        padding: 12px 28px;
+    }
+
+    .hero-image {
+        position: absolute;
+        inset: 0;
+        height: 100%;
+        z-index: -1;
+    }
+}

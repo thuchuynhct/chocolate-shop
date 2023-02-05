@@ -1,0 +1,41 @@
+@use "../../sass/index" as *;
+
+.product-card {
+    @include widthContent;
+    @include grid(auto-fit);
+    align-items: center;
+    gap: 20px 70px;
+    text-align: center;
+
+    .left {
+        @include flex(center, center, 13px, $direction: column);
+    }
+
+    .title {
+        font-family: $poppins;
+    }
+
+    .sub-title {
+        letter-spacing: 2.25px;
+    }
+
+    hr {
+        display: block;
+        width: 100px;
+        margin: 0 auto;
+        margin-top: auto-clamp(30);
+    }
+
+    .desc {
+        margin-top: auto-clamp(20);
+    }
+
+    .btn-card {
+        padding: 10px 55px;
+    }
+
+    .image {
+        width: 100%;
+        max-height: 550px;
+    }
+}

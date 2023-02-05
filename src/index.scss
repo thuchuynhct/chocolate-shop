@@ -1,0 +1,152 @@
+@use "./sass/index" as *;
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Poppins:wght@400;500;600&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: $text-base;
+  font-family: $poppins;
+  color: $clr-primary;
+  scroll-behavior: smooth;
+
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+a,
+button,
+img,
+input,
+label,
+span,
+textarea {
+  display: block;
+}
+
+button,
+input,
+textarea {
+  background-color: inherit;
+  border: none;
+  outline: none;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+img {
+  width: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+ul {
+  list-style: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: $cinzel;
+  font-weight: 400;
+  line-height: 1;
+  @include line(2);
+}
+
+h1 {
+  font-size: $text-3xl;
+}
+
+h2 {
+  font-size: $text-2xl;
+}
+
+h3 {
+  font-size: $text-xl;
+}
+
+h4 {
+  font-size: $text-lg;
+}
+
+a,
+span {
+  font-size: $text-sm;
+}
+
+p,
+input,
+input::placeholder,
+textarea,
+textarea::placeholder {
+  font-family: $poppins;
+  font-size: $text-base;
+}
+
+textarea {
+  resize: none;
+}
+
+button {
+  cursor: pointer;
+}
+
+// body {
+//   background-color: $clr-white;
+// }
+
+%btn {
+  min-width: 140px;
+  transition: all 300ms ease-in;
+
+  &:disabled {
+    background-color: $clr-stoneGrey;
+    pointer-events: none
+  }
+}
+
+.btn-white {
+  @extend %btn;
+  background-color: transparent;
+  outline: 1px solid $clr-white;
+
+  &:hover {
+    background-color: rgba($clr-white, 0.5);
+  }
+}
+
+.btn-black {
+  @extend %btn;
+  color: $clr-white;
+  background-color: $clr-darkBrown;
+
+  &:hover {
+    background-color: $clr-stoneGrey;
+  }
+}
+
+.btn-yellow {
+  @extend %btn;
+  color: $clr-white;
+  background-color: $clr-sunsetYellow;
+
+  &:hover {
+    background-color: rgba($clr-sunsetYellow, 0.5);
+  }
+}
+
+.p-page {
+  padding-left: 4%;
+  padding-right: 4%;
+}

@@ -1,0 +1,41 @@
+@use "../../sass/index" as *;
+
+.login {
+    @include flex(center, center);
+    @include size(100vw, 100vh);
+    color: #000;
+    background-color: #ebeae7;
+
+    @media screen and (max-width:500px) {
+        background-color: #fff;
+    }
+
+    .login-form {
+        @include flex(stretch, center, 20px, $direction: column);
+        width: min(500px, 100%);
+        padding: 40px 20px;
+        border-radius: 10px;
+        background-color: #fff;
+
+        h1 {
+            font-family: $poppins;
+            font-size: 45px;
+            text-align: center;
+            text-transform: uppercase;
+            line-height: 1.8;
+            font-weight: 500;
+        }
+
+        input {
+            width: 100%;
+            padding: 5px;
+            outline: 1px solid $clr-stoneGrey;
+        }
+
+        button {
+            align-self: center;
+            padding: 12px;
+            width: 40%;
+        }
+    }
+}

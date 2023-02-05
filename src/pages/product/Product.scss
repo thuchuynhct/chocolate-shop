@@ -1,0 +1,133 @@
+@use "../../sass/index" as *;
+
+.product-view {
+    width: min(100%, 1000px);
+    margin: 0 auto;
+    padding-top: auto-clamp(60);
+
+    span {
+        font-size: $text-base;
+    }
+
+    .location {
+        @include flex(center, space-between);
+
+        .breadcrumbs {
+            display: flex;
+            gap: 4px;
+
+            @include tablet {
+                display: none;
+            }
+        }
+
+        .breadcrumbs-mobile {
+            @include flex(center, $gap: 10px);
+
+            @include tablet(min) {
+                display: none;
+            }
+        }
+
+        .nav {
+            @include flex(center, center, 4px);
+
+            hr {
+                width: 1px;
+                height: 20px;
+                border-right: 1px solid $clr-primary;
+            }
+
+            a {
+                padding: 5px 10px;
+            }
+
+        }
+    }
+
+    .product-details {
+        @include flex(flex-start, flex-start, 20px);
+        margin-top: auto-clamp(63);
+        margin-bottom: 40px;
+
+        @include tablet {
+            flex-wrap: wrap;
+        }
+
+        .images {
+            >*+* {
+                margin-top: 20px;
+            }
+
+            button {
+                width: 50px;
+                padding: 5px;
+                aspect-ratio: 1;
+                border: 1px solid $clr-primary;
+
+                img {
+                    width: 100%;
+                }
+            }
+        }
+
+        .image-zoom {
+            flex-grow: 1;
+
+            img {
+                max-width: auto-clamp(450);
+                aspect-ratio: 1;
+                margin: auto;
+            }
+        }
+
+        .product-order {
+            @include flex(flex-start, flex-start, 22px, $direction: column);
+            width: 280px;
+
+            @include tablet {
+                flex-grow: 1;
+            }
+
+            h3 {
+                font-family: $poppins;
+            }
+
+            input {
+                width: 80px;
+                padding: 10px;
+                outline: 1px solid $clr-darkBrown;
+            }
+
+            button,
+            a {
+                width: 100%;
+                padding: 12px;
+                text-align: center;
+            }
+        }
+    }
+
+    .order-service {
+        display: grid;
+        gap: 20px;
+
+        @include tablet(min) {
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+
+        .service-item {
+
+            h3 {
+                font-family: $poppins;
+                font-size: $text-lg;
+                margin-bottom: 20px;
+            }
+        }
+    }
+
+    .disable {
+        pointer-events: none;
+        color: #ccc;
+    }
+}

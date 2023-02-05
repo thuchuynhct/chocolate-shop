@@ -1,0 +1,79 @@
+@use "sass:math";
+
+$large: 1050px;
+$tablet: 650px;
+$mobile: 450px;
+
+@mixin flex($align: false, $content: false, $gap: fasle, $wrap: fasle, $direction: fasle) {
+    display: flex;
+
+    @if($align !=false) {
+        align-items: $align;
+    }
+
+    @if($content !=false) {
+        justify-content: $content;
+    }
+
+    @if $gap !=fasle {
+        gap: $gap;
+    }
+
+    @if $wrap !=fasle {
+        flex-wrap: $wrap;
+    }
+
+    @if $direction !=fasle {
+        flex-direction: $direction;
+    }
+}
+
+@mixin grid($column, $minSize: 300px) {
+    display: grid;
+    grid-template-columns: repeat(#{$column}, minmax(#{$minSize}, 1fr));
+}
+
+@mixin size($width, $height) {
+    width: $width;
+    height: $height;
+}
+
+@mixin widthContent {
+    width: min(100%, 1100px);
+    margin: 0 auto;
+}
+
+@mixin line($line: 2) {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: $line;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+@function auto-clamp($space) {
+    //unit = 375/ 100
+    $unit: 3.75;
+    $haft: math.div($space, 2);
+    $percent: math.div($haft, $unit);
+    $percent: math.floor($percent);
+    @return clamp(#{$haft}px, #{$percent}vw, #{$space}px);
+}
+
+@mixin large($size: max) {
+    @media screen and (#{$size}-width: $large) {
+        @content;
+    }
+}
+
+@mixin tablet($size: max) {
+    @media screen and (#{$size}-width: $tablet) {
+        @content;
+    }
+}
+
+@mixin mobile($size: max) {
+    @media screen and (#{$size}-width: $mobile) {
+        @content;
+    }
+}

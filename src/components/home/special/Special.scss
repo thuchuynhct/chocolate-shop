@@ -1,0 +1,47 @@
+@use "../../../sass/index" as *;
+
+.specical {
+    padding: auto-clamp(80) 0 auto-clamp(110);
+    // background-color: $clr-white;
+
+    .btn-shop {
+        @include flex(center, flex-start, 8px);
+        margin-top: auto-clamp(55);
+        text-transform: uppercase;
+        font-size: $text-base;
+
+        &:hover {
+            svg {
+                transform: translateX(5px);
+            }
+        }
+
+        svg {
+            transition: all 300ms ease;
+        }
+    }
+
+    .special-image {
+        position: relative;
+        overflow: hidden;
+
+        &:hover .view {
+            bottom: 0;
+        }
+
+        .view {
+            position: absolute;
+            width: 100%;
+            left: 0;
+            bottom: -100%;
+            padding: 15px 0;
+            transition: all 300ms ease;
+        }
+
+        .btn-specical {
+            width: 100%;
+            height: 100%;
+            padding: 0;
+        }
+    }
+}

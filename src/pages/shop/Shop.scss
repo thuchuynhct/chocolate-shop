@@ -1,0 +1,37 @@
+@use "../../sass//" as *;
+
+.shop {
+    padding-top: auto-clamp(113);
+    padding-bottom: 25px;
+    text-align: center;
+
+    .cards {
+        @include grid(auto-fill);
+        gap: 12px 25px;
+        width: min(100%, 1100px);
+        margin: auto-clamp(80) auto 0;
+
+        .card-item {
+            position: relative;
+            @include flex(center, center, 12px, $direction: column);
+
+            img {
+                width: 100%;
+            }
+        }
+
+        .tag {
+            position: absolute;
+            top: 0;
+            left: 0;
+            padding: 2px 10px;
+            color: $clr-white;
+            background-color: $clr-sunsetYellow ;
+        }
+
+        .btn-cart {
+            width: 100%;
+            padding: 12px 0;
+        }
+    }
+}

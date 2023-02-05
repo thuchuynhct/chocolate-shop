@@ -1,0 +1,9 @@
+@use "../../../sass/index" as *;
+
+.media {
+    margin-top: auto-clamp(50);
+
+    img {
+        @include size(100%, auto-clamp(500));
+    }
+}

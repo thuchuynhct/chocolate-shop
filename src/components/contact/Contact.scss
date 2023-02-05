@@ -1,0 +1,51 @@
+@use "../../sass/index" as *;
+
+.contact {
+    margin-top: 30px;
+    padding-top: auto-clamp(50);
+    padding-bottom: auto-clamp(133);
+    background-color: $clr-offWhite;
+
+    .contact-form {
+        width: min(450px, 100%);
+        margin: 0 auto;
+        text-align: center;
+
+        .info {
+            @include flex(center, center, 20px, $direction: column);
+
+            hr {
+                width: 100px;
+                border-bottom: 1px solid $clr-primary;
+            }
+
+            span {
+                line-height: 2;
+                letter-spacing: 2.5px;
+            }
+        }
+
+        .user-contact {
+            @include grid(2, 0px);
+            margin-top: auto-clamp(72);
+            padding: 8px 0 auto-clamp(33);
+            gap: 8px;
+
+            input,
+            textarea {
+                padding: 5px 10px;
+                border: 1px solid $clr-primary;
+            }
+
+            textarea {
+                grid-row: span 3;
+            }
+
+            .btn-form {
+                padding: 10px 50px;
+                grid-column-start: 2;
+
+            }
+        }
+    }
+}

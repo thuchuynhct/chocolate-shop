@@ -1,0 +1,100 @@
+@use "../../sass/index" as *;
+
+.cartbar.show {
+    transform: translateX(0);
+}
+
+.cartbar {
+    position: fixed;
+    top: 0;
+    right: 0;
+    @include flex(stretch, flex-start, $direction: column);
+    width: min(360px, 100%);
+    height: 100vh;
+    background-color: $clr-white;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    transition: all 300ms ease;
+    transform: translate(100%);
+    z-index: 101;
+
+    .cart-heading {
+        position: relative;
+        @include flex(center, center);
+        padding: 35px 20px;
+        color: $clr-white;
+        background-color: $clr-stoneGrey;
+
+        button {
+            position: absolute;
+            top: 0;
+            left: 20px;
+            height: 100%;
+            font-size: 30px;
+            color: $clr-white;
+        }
+
+        h2 {
+            font-family: $poppins;
+            font-weight: 400;
+            text-transform: uppercase;
+        }
+    }
+
+    .cart-order {
+        flex-grow: 1;
+        padding: 20px;
+        border-bottom: 1px solid rgba($color: $clr-stoneGrey, $alpha: 0.7);
+        overflow-y: auto;
+
+        >*+* {
+            border-top: 1px solid rgba($color: $clr-stoneGrey, $alpha: 0.7);
+        }
+
+        .product {
+            @include flex(flex-start, space-between, 20px);
+            padding: 20px 0;
+
+            img {
+                width: 80px;
+                aspect-ratio: 1;
+            }
+
+            .product-details {
+                flex-grow: 1;
+
+                >*+* {
+                    margin-top: 5px;
+                }
+
+                h3 {
+                    font-family: $poppins;
+                    font-size: $text-base;
+                    font-weight: 500;
+                }
+
+            }
+
+            svg {
+                color: $clr-primary;
+            }
+        }
+    }
+
+    .cart-footer {
+        padding: 35px;
+
+        >*+* {
+            margin-top: 20px;
+        }
+
+        span {
+            font-size: $text-xl;
+        }
+
+        a {
+            width: 100%;
+            padding: 15px 0;
+            text-align: center;
+        }
+    }
+}

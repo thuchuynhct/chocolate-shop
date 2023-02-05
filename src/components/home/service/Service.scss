@@ -1,0 +1,11 @@
+@use "../../../sass/" as *;
+
+.service {
+    padding-top: auto-clamp(120);
+    padding-bottom: auto-clamp(117);
+
+    .service-image {
+        @include grid(2, 0);
+        gap: 20px;
+    }
+}

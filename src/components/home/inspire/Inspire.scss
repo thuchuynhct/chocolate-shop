@@ -1,0 +1,29 @@
+@use "../../../sass/index" as *;
+
+.inspire {
+    position: relative;
+
+    .text {
+        position: absolute;
+        inset: 0;
+        padding: 20px;
+        @include flex(center, center, 25px, $direction: column);
+        z-index: 1;
+    }
+
+    h2,
+    span {
+        width: min(480px, 100%);
+        font-family: $poppins;
+        text-align: center;
+        line-height: 1.2;
+        color: $clr-white;
+        -webkit-line-clamp: 3;
+    }
+
+    img {
+        width: 100%;
+        height: auto-clamp(550);
+        filter: brightness(0.5);
+    }
+}

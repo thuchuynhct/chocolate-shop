@@ -1,0 +1,6 @@
+@use "../../../sass/index" as *;
+
+.about {
+    padding-top: auto-clamp(100);
+    padding-bottom: auto-clamp(110);
+}

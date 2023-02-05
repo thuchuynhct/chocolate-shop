@@ -1,0 +1,108 @@
+@use "../../sass/index" as *;
+
+.checkout {
+
+    width: min(1100px, 100%);
+    margin: 0 auto;
+    padding-top: auto-clamp(72);
+
+    @media screen and (min-width:1100px) {
+        @include grid(3, 0);
+        gap: auto-clamp(52);
+    }
+
+    h2,
+    h3 {
+        padding: 10px 0 16px;
+        font-family: $poppins;
+        font-size: $text-lg;
+    }
+
+    h2 {
+        border-bottom: 1px solid rgba($color: $clr-stoneGrey, $alpha: 0.5);
+    }
+
+    h3 {
+        font-size: $text-md;
+
+    }
+
+    span {
+        font-size: $text-base;
+    }
+
+
+    .left {
+        grid-column: span 2;
+        max-height: calc(80vh);
+        overflow: auto;
+
+        .products {
+            .product {
+                display: flex;
+                align-items: flex-start;
+                gap: 20px;
+                padding: 20px 0;
+                border-bottom: 1px solid rgba($color: $clr-stoneGrey, $alpha: 0.5);
+
+                img {
+                    width: 100px;
+                    aspect-ratio: 1;
+                    padding: 5px;
+                    border: 1px solid rgba($color: $clr-stoneGrey, $alpha: 0.5);
+                }
+
+                .product-details {
+                    flex-grow: 1;
+                    @include flex($align: flex-start, $gap: 20px);
+
+                    @include tablet {
+                        flex-direction: column;
+                    }
+
+                    .product-info {
+                        flex-grow: 1;
+                    }
+
+                    .product-amount {
+                        @include flex($align: center, $gap: 20px);
+
+                        .amount {
+                            width: 120px;
+                        }
+
+                    }
+
+                }
+
+                .remove {
+                    color: $clr-primary;
+                }
+            }
+        }
+    }
+
+    .right {
+        .subtotal {
+            display: flex;
+            justify-content: space-between;
+            padding: 20px 0;
+            border-bottom: 1px solid rgba($color: $clr-stoneGrey, $alpha: 0.5);
+        }
+
+        .total {
+            display: flex;
+            justify-content: space-between;
+            padding: 20px 0;
+
+            span {
+                font-size: $text-lg;
+            }
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+        }
+    }
+}
