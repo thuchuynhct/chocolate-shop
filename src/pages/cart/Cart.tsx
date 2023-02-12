@@ -1,35 +1,20 @@
 import { MdClose } from 'react-icons/md';
 import NumberField from '../../components/numberField/NumberField';
-import { totalMoney, useData } from '../../context/AppContext';
-import { ProductType } from '../../data/products';
+import { useData } from '../../context/AppContext';
 import './Cart.scss';
 
 const Cart = () => {
-    const { user, dispatch } = useData();
-    const money = totalMoney();
+    const { user, setRemoveFromCart, setAddToCart, setCheckout, getTotalMoney } = useData();
+    const money = getTotalMoney();
 
     const removeToCart = (id: number) => {
-        dispatch({
-            type: "REMOVE_TO_CART",
-            payload: {
-                id
-            }
-        })
+        setRemoveFromCart(id);
     }
-    const amountChange = (product: ProductType, num: number) => {
-        const changeInfo: Partial<ProductType> = {
-            id: product.id,
-            amount: num
-        }
-        dispatch({
-            type: "ADD_TO_CART",
-            payload: changeInfo
-        })
+    const amountChange = (id: number, amount: number) => {
+        setAddToCart(id, amount)
     }
     const checkOut = () => {
-        dispatch({
-            type: "CHECK_OUT"
-        })
+        setCheckout();
     }
     return (
         <main>
@@ -48,8 +33,8 @@ const Cart = () => {
                                     <div className="product-amount">
                                         <NumberField className='amount'
                                             value={product.amount}
-                                            onDecrease={() => amountChange(product, -1)}
-                                            onIncrease={() => amountChange(product, 1)}
+                                            onDecrease={() => amountChange(product.id, -1)}
+                                            onIncrease={() => amountChange(product.id, 1)}
                                         />
                                         <span>${product.amount * product.price}.00</span>
                                     </div>

@@ -10,7 +10,7 @@ import './Header.scss';
 import { useData } from '../../context/AppContext';
 
 const Header = () => {
-    const { user, dispatch } = useData();
+    const { user, setCartToggle } = useData();
     const [active, setActive] = useState<number>(navbars[0].id);
     const [isMenu, setIsMenu] = useState<boolean>(false)
 
@@ -22,10 +22,7 @@ const Header = () => {
     }
     const toggleCart = () => {
         setIsMenu(false);
-        dispatch({
-            type: "SET_CART_TOGGLE",
-            payload: true
-        })
+        setCartToggle(true);
     }
     return (
         <header className='header'>
@@ -76,13 +73,10 @@ const Login = () => {
     )
 }
 const LogOut = () => {
-    const { dispatch } = useData();
+    const { setLogin } = useData();
 
     const logoutHandle = () => {
-        dispatch({
-            type: "SET_LOGIN",
-            payload: false
-        })
+        setLogin(false);
     }
     return (
         <Link to="/" className="btn-login" onClick={logoutHandle}>

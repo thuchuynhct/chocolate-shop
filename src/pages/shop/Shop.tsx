@@ -24,7 +24,7 @@ const Shop = () => {
 
 const Product = ({ item }: { item: ProductType }) => {
     const navigate = useNavigate();
-    const { user, dispatch } = useData();
+    const { user, setAddToCart } = useData();
     const [isHover, setIsHover] = useState<boolean>(false);
     const [amount, setAmount] = useState<number>(1);
 
@@ -39,14 +39,7 @@ const Product = ({ item }: { item: ProductType }) => {
             navigate("/login");
             return
         }
-
-        dispatch({
-            type: "ADD_TO_CART",
-            payload: {
-                id: item.id,
-                amount
-            }
-        })
+        setAddToCart(item.id, amount);
     }
     return (
         <div

@@ -1,39 +1,23 @@
 import { BiChevronRight } from 'react-icons/bi';
 import ReactDOM from 'react-dom';
 import './CartBar.scss';
-import { products, ProductType } from '../../data/products';
-import { totalMoney, useData } from '../../context/AppContext';
-import { isRouteErrorResponse, Link } from 'react-router-dom';
+import { useData } from '../../context/AppContext';
+import { Link } from 'react-router-dom';
 import { MdClose } from 'react-icons/md';
 import Overlay from '../overlay/Overlay';
 import NumberField from '../numberField/NumberField';
 
 const CartBar = () => {
-    const { user, dispatch } = useData();
-    const money = totalMoney();
+    const { user, setCartToggle, setRemoveFromCart, setAddToCart, getTotalMoney } = useData();
+    const money = getTotalMoney();
     const closeCart = () => {
-        dispatch({
-            type: "SET_CART_TOGGLE",
-            payload: false
-        })
+        setCartToggle(false);
     }
     const removeToCart = (id: number) => {
-        dispatch({
-            type: "REMOVE_TO_CART",
-            payload: {
-                id
-            }
-        })
+        setRemoveFromCart(id);
     }
-    const amountChange = (product: ProductType, num: number) => {
-        const changeInfo: Partial<ProductType> = {
-            id: product.id,
-            amount: num
-        }
-        dispatch({
-            type: "ADD_TO_CART",
-            payload: changeInfo
-        })
+    const amountChange = (id: number, amount: number) => {
+        setAddToCart(id, amount);
     }
     return ReactDOM.createPortal((
         <Overlay show={user.cartToggle} onClick={closeCart}>
@@ -52,8 +36,8 @@ const CartBar = () => {
                                     <span>${product.price}.00</span>
                                     <NumberField
                                         value={product.amount}
-                                        onDecrease={() => amountChange(product, -1)}
-                                        onIncrease={() => amountChange(product, 1)}
+                                        onDecrease={() => amountChange(product.id, -1)}
+                                        onIncrease={() => amountChange(product.id, 1)}
                                     />
                                 </div>
                                 <button onClick={() => removeToCart(product.id)} className='remove'><MdClose size={20} /></button>

@@ -3,13 +3,10 @@ import { useData } from '../../context/AppContext';
 import './Login.scss';
 
 const Login = () => {
-    const { dispatch } = useData();
+    const { setLogin } = useData();
     const onSubmit = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        dispatch({
-            type: "SET_LOGIN",
-            payload: true
-        })
+        setLogin(true);
     }
     return (
         <div className='login'>

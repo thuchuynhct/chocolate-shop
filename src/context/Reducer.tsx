@@ -3,7 +3,7 @@ import { ToastOptions } from 'react-toastify/dist/types';
 import { products } from '../data/products';
 import { UserType } from './AppContext'
 
-export type Action = "SET_LOGIN" | "SET_CART_TOGGLE" | "ADD_TO_CART" | "REMOVE_TO_CART" | "CHECK_OUT";
+export type Action = "SET_LOGIN" | "SET_CART_TOGGLE" | "ADD_TO_CART" | "REMOVE_FROM_CART" | "CHECK_OUT";
 
 const toastOptions: Partial<ToastOptions> = {
     theme: "dark",
@@ -46,7 +46,7 @@ const Reducer = (state: UserType, action: { type: Action, payload?: any }): User
                 break;
             }
 
-        case "REMOVE_TO_CART":
+        case "REMOVE_FROM_CART":
             newState.cart = newState.cart.filter(s => s.id != action.payload.id);
             break;
 

@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import { HiOutlineArrowNarrowLeft } from 'react-icons/hi';
-import { Link, Navigate, useLocation, useParams } from 'react-router-dom';
+import { Link, Navigate, useParams } from 'react-router-dom';
 import { useData } from '../../context/AppContext';
-import { products, ProductType } from '../../data/products';
+import { products } from '../../data/products';
 import './Product.scss';
 
 
 const Product = () => {
-    const { dispatch } = useData();
+    const { setAddToCart } = useData();
     const [productAmount, setProductAmount] = useState(1);
     const { id } = useParams();
     const product = products.find(s => s.id === Number(id));
@@ -19,14 +19,7 @@ const Product = () => {
     const isLast = product.id === products[products.length - 1].id;
 
     const addToCart = () => {
-        const payload: Partial<ProductType> = {
-            id: product.id,
-            amount: productAmount
-        }
-        dispatch({
-            type: "ADD_TO_CART",
-            payload: payload
-        })
+        setAddToCart(product.id, productAmount)
     }
     const inputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const value = event.target.value;

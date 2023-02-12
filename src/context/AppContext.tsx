@@ -1,7 +1,6 @@
-import React, { createContext, useContext, useEffect, useReducer } from 'react'
-import { json } from 'react-router-dom';
+import { createContext, useContext, useEffect, useReducer } from 'react'
 import { ProductType } from '../data/products';
-import Reducer, { Action } from './Reducer';
+import Reducer from './Reducer';
 
 
 export type UserType = {
@@ -12,10 +11,12 @@ export type UserType = {
 
 type ContextType = {
     user: UserType,
-    dispatch: React.Dispatch<{
-        type: Action,
-        payload?: any
-    }>
+    setLogin: (isLogin: boolean) => void,
+    setCartToggle: (isToggle: boolean) => void,
+    setRemoveFromCart: (id: number) => void,
+    setAddToCart: (id: number, amount: number) => void,
+    setCheckout: () => void;
+    getTotalMoney: () => number
 }
 const AppContext = createContext<ContextType>({} as ContextType);
 
@@ -27,21 +28,66 @@ const appInitial: UserType = JSON.parse(localStorage.getItem("user") || "") || {
 }
 
 const AppProvider = ({ children }: { children: JSX.Element | JSX.Element[] }) => {
-    const [state, dispatch] = useReducer(Reducer, appInitial);
-    useEffect(() => {
-        localStorage.setItem("user", JSON.stringify(state));
-    }, [state])
+    const [user, dispatch] = useReducer(Reducer, appInitial);
 
-    return <AppContext.Provider value={{ user: state, dispatch }}>
+    useEffect(() => {
+        localStorage.setItem("user", JSON.stringify(user));
+    }, [user])
+
+    const setLogin = (isLogin: boolean) => {
+        dispatch({
+            type: "SET_LOGIN",
+            payload: isLogin
+        })
+    }
+
+    const setCartToggle = (isToggle: boolean) => {
+        dispatch({
+            type: "SET_CART_TOGGLE",
+            payload: isToggle
+        })
+    }
+    const setRemoveFromCart = (id: number) => {
+        dispatch({
+            type: "REMOVE_FROM_CART",
+            payload: {
+                id
+            }
+        })
+    }
+    const setAddToCart = (id: number, amount: number) => {
+        dispatch({
+            type: "ADD_TO_CART",
+            payload: {
+                id,
+                amount
+            }
+        })
+    }
+    const setCheckout = () => {
+        dispatch({
+            type: "CHECK_OUT"
+        })
+    }
+    const getTotalMoney = (): number => {
+        return user.cart.reduce((curr, product) => curr + product.amount * product.price, 0);
+    }
+
+    return <AppContext.Provider
+        value={{
+            user,
+            setLogin,
+            setCartToggle,
+            setRemoveFromCart,
+            setAddToCart,
+            setCheckout,
+            getTotalMoney
+        }}>
         {children}
     </AppContext.Provider>
 }
 
 export const useData = () => (useContext(AppContext))
 
-export const totalMoney = (): number => {
-    const { user } = useData();
-    return user.cart.reduce((curr, product) => curr + product.amount * product.price, 0);
-}
 
 export default AppProvider;
